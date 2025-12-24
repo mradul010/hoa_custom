@@ -5,6 +5,18 @@ app_description = "Hoa Custom"
 app_email = "mradulmishra010@gmail.com"
 app_license = "mit"
 
+
+
+doctype_js = {
+    "Purchase Receipt": "public/js/purchase_receipt_custom.js"
+}
+
+doc_events = {
+    "Item": {
+        "autoname": "hoa_custom.overrides.item.autoname_item"
+    }
+}
+
 # Apps
 # ------------------
 
