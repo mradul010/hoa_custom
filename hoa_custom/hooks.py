@@ -13,7 +13,7 @@ doctype_js = {
 
 doc_events = {
     "Item": {
-        "autoname": "hoa_custom.overrides.item.autoname_item"
+        "autoname": "hoa_custom.overrides.items.autoname_item"
     }
 }
 
