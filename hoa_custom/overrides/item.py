@@ -4,7 +4,7 @@ def autoname_item(doc, method=None):
     if doc.name:
         return
 
-    if not doc.item_group or not doc.custom_item_department:
+    if not doc.item_group or not doc.custom_item_department or not doc.custom_company:
         frappe.throw("Item Group and Item Department are required")
 
     # Item Group Abbreviation
@@ -22,13 +22,13 @@ def autoname_item(doc, method=None):
     )
 
     # Company (Items are global)
-    company = (
-        frappe.defaults.get_user_default("Company")
-        or frappe.defaults.get_global_default("company")
-    )
+    # company = (
+    #     frappe.defaults.get_user_default("Company")
+    #     or frappe.defaults.get_global_default("company")
+    # )
 
-    #company_abbr = frappe.db.get_value("Company", company, "abbr")
-    company_abbr = "HOA"
+    company_abbr = frappe.db.get_value("Company", {"company_name": doc.custom_company}, "abbr")
+    #company_abbr = "HOA"
 
     if not item_group_abbr:
         frappe.throw("Item Group abbreviation missing")
