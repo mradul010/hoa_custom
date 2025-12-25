@@ -1,11 +1,12 @@
 import frappe
 
 def autoname_item(doc, method=None):
-    if doc.name:
+    if doc.name and not doc.__islocal:
         return
 
+    # Mandatory checks
     if not doc.item_group or not doc.department_name or not doc.custom_company:
-        frappe.throw("Item Group and Item Department are required")
+        frappe.throw("Item Group, Department and Company are required")
 
     # Item Group Abbreviation
     item_group_abbr = frappe.db.get_value(
@@ -14,55 +15,28 @@ def autoname_item(doc, method=None):
         "custom_item_group_abbr"
     )
 
-    # # Department Abbreviation (SAFE FILTER)
-    # department_abbr = frappe.db.get_value(
-    #     "Item Department",
-    #     {"name": doc.custom_item_department},
-    #     "department_abbr"
-    # )
+    if not item_group_abbr:
+        frappe.throw(f"Item Group Abbreviation not set for {doc.item_group}")
 
-    # Department Abbreviation (SAFE FILTER) Production
+    # Department Abbreviation (CORRECT FIELD)
     department_abbr = frappe.db.get_value(
         "Item Department",
-        doc.department_name,
+        {"name": doc.department_name},
         "department_abbr"
     )
 
-    # Company (Items are global)
-    # company = (
-    #     frappe.defaults.get_user_default("Company")
-    #     or frappe.defaults.get_global_default("company")
-    # )
-
-    company_abbr = frappe.db.get_value("Company", doc.custom_company, "abbr")
-    #company_abbr = "HOA"
-
-    if not item_group_abbr:
-        frappe.throw("Item Group abbreviation missing")
-
     if not department_abbr:
-        frappe.throw("Department abbreviation missing")
+        frappe.throw("Department Abbreviation not found")
+
+    # Company Abbreviation
+    company_abbr = frappe.db.get_value(
+        "Company",
+        {"company_name": doc.custom_company},
+        "abbr"
+    )
 
     if not company_abbr:
-        frappe.throw("Company abbreviation missing")
+        frappe.throw("Company abbreviation not found")
 
-    prefix = f"{item_group_abbr}-{department_abbr}-{company_abbr}"
-
-    last_item = frappe.db.sql("""
-        SELECT name
-        FROM tabItem
-        WHERE name LIKE %s
-        ORDER BY creation DESC
-        LIMIT 1
-        FOR UPDATE
-    """, (prefix + "-%",), as_dict=True)
-
-    next_number = 1
-    if last_item:
-        next_number = int(last_item[0].name.split("-")[-1]) + 1
-
-    item_code = f"{prefix}-{str(next_number).zfill(3)}"
-
-    doc.name = item_code
-    doc.item_code = item_code
-    
+    # Final Item Code
+    doc.name = f"{company_abbr}-{item_group_abbr}-{department_abbr}-{frappe.generate_hash(length=4).upper()}"
