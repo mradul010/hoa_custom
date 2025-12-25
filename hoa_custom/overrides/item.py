@@ -24,7 +24,7 @@ def autoname_item(doc, method=None):
     # Department Abbreviation (SAFE FILTER) Production
     department_abbr = frappe.db.get_value(
         "Item Department",
-        {"name": doc.department_name},
+        doc.department_name,
         "department_abbr"
     )
 
@@ -34,7 +34,7 @@ def autoname_item(doc, method=None):
     #     or frappe.defaults.get_global_default("company")
     # )
 
-    company_abbr = frappe.db.get_value("Company", {"company_name": doc.custom_company}, "abbr")
+    company_abbr = frappe.db.get_value("Company", doc.custom_company, "abbr")
     #company_abbr = "HOA"
 
     if not item_group_abbr:
