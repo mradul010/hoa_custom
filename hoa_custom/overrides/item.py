@@ -4,7 +4,7 @@ def autoname_item(doc, method=None):
     if doc.name:
         return
 
-    if not doc.item_group or not doc.custom_item_department or not doc.custom_company:
+    if not doc.item_group or not doc.department_name or not doc.custom_company:
         frappe.throw("Item Group and Item Department are required")
 
     # Item Group Abbreviation
