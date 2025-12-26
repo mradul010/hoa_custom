@@ -39,4 +39,18 @@ def autoname_item(doc, method=None):
         frappe.throw("Company abbreviation not found")
 
     # Final Item Code
-    doc.name = f"{company_abbr}-{item_group_abbr}-{department_abbr}-{frappe.generate_hash(length=4).upper()}"
+    prefix = f"{item_group_abbr}-{department_abbr}-{company_abbr}"
+
+    last = frappe.db.sql(
+        """SELECT name FROM tabItem
+           WHERE name LIKE %s
+           ORDER BY creation DESC LIMIT 1 FOR UPDATE""",
+        (prefix + "-%",),
+        as_dict=True
+    )
+
+    next_no = int(last[0].name.split("-")[-1]) + 1 if last else 1
+    code = f"{prefix}-{str(next_no).zfill(3)}"
+
+    doc.name = code
+    doc.item_code = code
