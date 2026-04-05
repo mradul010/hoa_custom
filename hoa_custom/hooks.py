@@ -14,8 +14,27 @@ doctype_js = {
 doc_events = {
     "Item": {
         "autoname": "hoa_custom.overrides.final_item.autoname_item"
+    },
+    "Purchase Order": {
+        "before_insert": "hoa_custom.overrides.purchase_order.set_naming_series"
     }
 }
+
+fixtures = [
+    {
+        "doctype": "Custom Field",
+        "filters": [
+            ["dt", "=", "Purchase Order"],
+            ["fieldname", "in", ["po_type", "approved_by"]]
+        ]
+    },
+    {
+        "doctype": "Client Script",
+        "filters": [
+            ["dt", "=", "Purchase Order"]
+        ]
+    }
+]
 
 # Apps
 # ------------------

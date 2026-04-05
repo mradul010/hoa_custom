@@ -1,0 +1,99 @@
+[
+  {
+    "doctype": "Custom Field",
+    "name": "Purchase Order-po_type",
+    "dt": "Purchase Order",
+    "fieldname": "po_type",
+    "label": "PO Type",
+    "fieldtype": "Select",
+    "options": "Normal Material\nSubcontracting/Works\nMachinery Rentals",
+    "insert_after": "supplier",
+    "reqd": 1
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Purchase Order-approved_by",
+    "dt": "Purchase Order",
+    "fieldname": "approved_by",
+    "label": "Approved By",
+    "fieldtype": "Link",
+    "options": "User",
+    "insert_after": "po_type"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Purchase Order-quotation_no",
+    "dt": "Purchase Order",
+    "fieldname": "quotation_no",
+    "label": "Quotation Number",
+    "fieldtype": "Data",
+    "options": "Supplier Quotation",
+    "insert_after": "supplier",
+    "reqd": 0
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Purchase Order-quoatation_date",
+    "dt": "Purchase Order",
+    "fieldname": "quotation_date",
+    "label": "Quotation Date",
+    "fieldtype": "Date",
+    "fetch_from": "supplier_quotation.transaction_date",
+    "fetch_if_empty": 1,
+    "insert_after": "quotation_no"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Purchase Order-delivery_location",
+    "dt": "Purchase Order",
+    "fieldname": "delivery_location",
+    "label": "Delivery Location",
+    "fieldtype": "Data",
+    "insert_after": "schedule_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Purchase Order-project_contact_person",
+    "dt": "Purchase Order",
+    "fieldname": "project_contact_person",
+    "label": "Contact Person",
+    "fieldtype": "Link",
+    "options": "User",
+    "fetch_from": "project.contact_person",
+    "fetch_if_empty": 1,
+    "insert_after": "delivery_location"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Purchase Order-logistics_person",
+    "dt": "Purchase Order",
+    "fieldname": "logistics_person",
+    "label": "Logistics Person",
+    "fieldtype": "Link",
+    "options": "User",
+    "fetch_from": "project.logistics_person",
+    "fetch_if_empty": 1,
+    "insert_after": "delivery_location"
+  },
+
+  {
+    "doctype": "Custom Field",
+    "name": "Project-contact_person",
+    "dt": "Project",
+    "fieldname": "contact_person",
+    "label": "Contact Person",
+    "fieldtype": "Link",
+    "options": "User",
+    "insert_after": "project_name"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Project-logistics_person",
+    "dt": "Project",
+    "fieldname": "logistics_person",
+    "label": "Logistics Person",
+    "fieldtype": "Link",
+    "options": "User",
+    "insert_after": "contact_person"
+  }
+]
