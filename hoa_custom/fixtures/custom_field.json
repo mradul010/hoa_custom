@@ -75,6 +75,25 @@
     "fetch_if_empty": 1,
     "insert_after": "delivery_location"
   },
+  {
+    "doctype": "Custom Field",
+    "name": "Purchase Order-material_request_ref",
+    "dt": "Purchase Order",
+    "fieldname": "material_request_ref",
+    "label": "Material Request Ref",
+    "fieldtype": "Data",
+    "insert_after": "quotation_date"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Purchase Order-requested_by",
+    "dt": "Purchase Order",
+    "fieldname": "requested_by",
+    "label": "Requested By",
+    "fieldtype": "Data",
+    "insert_after": "material_request_ref"
+  },
+  
 
   {
     "doctype": "Custom Field",

@@ -25,7 +25,7 @@ def set_naming_series(doc, method):
 
     elif doc.po_type == "Subcontracting/Works":
         naming_series = f"{abbr}-SBC-{year}-.####"
-        doc.is_subcontracted = 1
+        doc.is_subcontracted = 0
 
     elif doc.po_type == "Machinery Rentals":
         naming_series = f"{abbr}-MAC-{year}-.####"
