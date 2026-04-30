@@ -6,34 +6,20 @@ app_email = "mradulmishra010@gmail.com"
 app_license = "mit"
 
 
-
-doctype_js = {
-    "Purchase Receipt": "public/js/purchase_receipt_custom.js"
-}
+doctype_js = {"Purchase Receipt": "public/js/purchase_receipt_custom.js"}
 
 doc_events = {
-    "Item": {
-        "autoname": "hoa_custom.overrides.final_item.autoname_item"
-    },
-    "Purchase Order": {
-        "before_insert": "hoa_custom.overrides.purchase_order.set_naming_series"
-    }
+	"Item": {"autoname": "hoa_custom.overrides.final_item.autoname_item"},
+	"Purchase Order": {"before_save": "hoa_custom.overrides.purchase_order.set_naming_series"},
+	"Salary Slip": {"validate": "hoa_custom.overrides.loan_fetch.handle_loan_deduction"},
 }
 
 fixtures = [
-    {
-        "doctype": "Custom Field",
-        "filters": [
-            ["dt", "=", "Purchase Order"],
-            ["fieldname", "in", ["po_type", "approved_by"]]
-        ]
-    },
-    {
-        "doctype": "Client Script",
-        "filters": [
-            ["dt", "=", "Purchase Order"]
-        ]
-    }
+	{
+		"doctype": "Custom Field",
+		"filters": [["dt", "=", "Purchase Order"], ["fieldname", "in", ["po_type", "approved_by"]]],
+	},
+	{"doctype": "Client Script", "filters": [["dt", "=", "Purchase Order"]]},
 ]
 
 # Apps
@@ -272,4 +258,3 @@ fixtures = [
 # default_log_clearing_doctypes = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
-

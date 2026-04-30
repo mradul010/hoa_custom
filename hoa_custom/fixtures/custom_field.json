@@ -22,6 +22,16 @@
   },
   {
     "doctype": "Custom Field",
+    "name": "Purchase Order-approved_technically_by",
+    "dt": "Purchase Order",
+    "fieldname": "approved_technically_by",
+    "label": "Approved Technically By",
+    "fieldtype": "Link",
+    "options": "User",
+    "insert_after": "approved_by"
+  },
+  {
+    "doctype": "Custom Field",
     "name": "Purchase Order-quotation_no",
     "dt": "Purchase Order",
     "fieldname": "quotation_no",
@@ -93,8 +103,6 @@
     "fieldtype": "Data",
     "insert_after": "material_request_ref"
   },
-  
-
   {
     "doctype": "Custom Field",
     "name": "Project-contact_person",
