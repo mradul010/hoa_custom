@@ -26,8 +26,7 @@
     "dt": "Purchase Order",
     "fieldname": "approved_technically_by",
     "label": "Approved Technically By",
-    "fieldtype": "Link",
-    "options": "User",
+    "fieldtype": "Data",
     "insert_after": "approved_by"
   },
   {
@@ -37,7 +36,6 @@
     "fieldname": "quotation_no",
     "label": "Quotation Number",
     "fieldtype": "Data",
-    "options": "Supplier Quotation",
     "insert_after": "supplier",
     "reqd": 0
   },
