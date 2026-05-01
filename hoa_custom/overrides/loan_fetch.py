@@ -7,11 +7,11 @@ def handle_loan_deduction(doc, method):
 
 	# Get employee + date
 	employee = doc.employee
-	end_date = doc.end_date
 	total_deduction = 0
 
 	# Fetch loans for employee
 	loans = frappe.get_all("Loan", filters={"applicant": employee, "docstatus": 1}, fields=["name"])
+
 	# Loop through repayment schedules
 	for loan in loans:
 		schedules = frappe.get_all("Loan Repayment Schedule", filters={"loan": loan.name}, fields=["name"])
@@ -19,7 +19,7 @@ def handle_loan_deduction(doc, method):
 		for sched in schedules:
 			rows = frappe.get_all(
 				"Repayment Schedule",
-				filters={"parent": sched.name, "payment_date": ["<=", end_date]},
+				filters={"parent": sched.name, "payment_date": ["between", [doc.start_date, doc.end_date]]},
 				fields=["principal_amount", "interest_amount"],
 			)
 
@@ -35,6 +35,7 @@ def handle_loan_deduction(doc, method):
 				d.amount = total_deduction
 				found = True
 				break
+
 		if not found:
 			doc.append("deductions", {"salary_component": "Loan Deduction", "amount": total_deduction})
 
