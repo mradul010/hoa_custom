@@ -35,9 +35,4 @@ def set_naming_series(doc, method):
 	else:
 		return
 
-	# Always update naming series if changed
-	if doc.naming_series != naming_series:
-		doc.naming_series = naming_series
-
-		# Reset name only if still draft (so new series applies)
-		doc.name = None
+	doc.naming_series = naming_series
