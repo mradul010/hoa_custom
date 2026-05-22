@@ -9,7 +9,10 @@ app_license = "mit"
 doctype_js = {"Purchase Receipt": "public/js/purchase_receipt_custom.js"}
 
 doc_events = {
-	"Item": {"autoname": "hoa_custom.overrides.final_item.autoname_item"},
+	"Item": {
+		"autoname": "hoa_custom.overrides.final_item.autoname_item",
+		"on_update": "hoa_custom.item_sync.on_item_update",
+	},
 	"Purchase Order": {"before_insert": "hoa_custom.overrides.purchase_order.set_naming_series"},
 	"Salary Slip": {"validate": "hoa_custom.overrides.loan_fetch.handle_loan_deduction"},
 }
