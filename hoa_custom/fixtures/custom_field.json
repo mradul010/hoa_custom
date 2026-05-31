@@ -120,5 +120,53 @@
     "fieldtype": "Link",
     "options": "User",
     "insert_after": "contact_person"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Material Request-custom_type_of_purchase",
+    "dt": "Material Request",
+    "fieldname": "custom_type_of_purchase",
+    "label": "Type of Purchase",
+    "fieldtype": "Select",
+    "options": "Material Purchase\nMachinery Rental\nSubcontract / Works Request",
+    "insert_after": "material_request_type"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Material Request-custom_attach_document",
+    "dt": "Material Request",
+    "fieldname": "custom_attach_document",
+    "label": "Attach Document",
+    "fieldtype": "Attach",
+    "insert_after": "custom_type_of_purchase"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Material Request-custom_comment",
+    "dt": "Material Request",
+    "fieldname": "custom_comment",
+    "label": "Comment",
+    "fieldtype": "Small Text",
+    "insert_after": "custom_attach_document"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Material Request-custom_priority_urgency",
+    "dt": "Material Request",
+    "fieldname": "custom_priority_urgency",
+    "label": "Priority / Urgency",
+    "fieldtype": "Select",
+    "options": "Low\nModerate\nHigh",
+    "default": "Moderate",
+    "insert_after": "custom_comment"
+  },
+  {
+    "doctype": "Custom Field",
+    "name": "Material Request-custom_delivery_location",
+    "dt": "Material Request",
+    "fieldname": "custom_delivery_location",
+    "label": "Delivery Location",
+    "fieldtype": "Small Text",
+    "insert_after": "schedule_date"
   }
 ]

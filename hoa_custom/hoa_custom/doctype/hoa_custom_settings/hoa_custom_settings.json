@@ -1,0 +1,53 @@
+{
+ "actions": [],
+ "creation": "2026-05-31 00:00:00.000000",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "material_request_section",
+  "enable_material_request_auto_assignment",
+  "default_material_request_assignee"
+ ],
+ "fields": [
+  {
+   "fieldname": "material_request_section",
+   "fieldtype": "Section Break",
+   "label": "Material Request"
+  },
+  {
+   "default": "1",
+   "fieldname": "enable_material_request_auto_assignment",
+   "fieldtype": "Check",
+   "label": "Enable Material Request Auto Assignment"
+  },
+  {
+   "description": "Material Requests will be assigned to this user automatically on submit.",
+   "fieldname": "default_material_request_assignee",
+   "fieldtype": "Link",
+   "label": "Default Material Request Assignee",
+   "options": "User"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-05-31 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Hoa Custom",
+ "name": "HOA Custom Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

@@ -13,6 +13,9 @@ doc_events = {
 		"autoname": "hoa_custom.overrides.final_item.autoname_item",
 		"on_update": "hoa_custom.item_sync.on_item_update",
 	},
+	"Material Request": {
+		"on_submit": "hoa_custom.material_request_hooks.assign_material_request_on_submit",
+	},
 	"Purchase Order": {"before_insert": "hoa_custom.overrides.purchase_order.set_naming_series"},
 	"Salary Slip": {"validate": "hoa_custom.overrides.loan_fetch.handle_loan_deduction"},
 }
@@ -20,7 +23,11 @@ doc_events = {
 fixtures = [
 	{
 		"doctype": "Custom Field",
-		"filters": [["dt", "=", "Purchase Order"], ["fieldname", "in", ["po_type", "approved_by"]]],
+		"filters": [["dt", "in", ["Purchase Order", "Project", "Material Request", "HOA Custom Settings"]]],
+	},
+	{
+		"doctype": "Property Setter",
+		"filters": [["doc_type", "in", ["Material Request", "Material Request Item"]]],
 	},
 	{"doctype": "Client Script", "filters": [["dt", "=", "Purchase Order"]]},
 ]
