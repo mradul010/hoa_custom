@@ -1,0 +1,12 @@
+[
+  {
+    "doctype": "Property Setter",
+    "name": "Material Request-buying_price_list-hidden",
+    "doc_type": "Material Request",
+    "doctype_or_field": "DocField",
+    "field_name": "buying_price_list",
+    "property": "hidden",
+    "property_type": "Check",
+    "value": "1"
+  }
+]

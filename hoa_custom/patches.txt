@@ -2,6 +2,7 @@
 hoa_custom.patches.v_1.add_site_personal_fields
 hoa_custom.patches.v_1.rejected_item_purchase_receipt
 hoa_custom.patches.v_1.barcode_image
+hoa_custom.patches.v_1.material_request_customization
 
 [post_model_sync]
 # Patches added in this section will be executed after doctypes are migrated
