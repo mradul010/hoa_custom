@@ -32,6 +32,11 @@ fixtures = [
 	{"doctype": "Client Script", "filters": [["dt", "=", "Purchase Order"]]},
 ]
 
+override_whitelisted_methods = {
+    "erpnext.stock.doctype.material_request.material_request.make_purchase_order":
+    "hoa_custom.overrides.material_request.make_purchase_order"
+}
+
 # Apps
 # ------------------
 

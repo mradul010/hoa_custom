@@ -1,1 +1,13 @@
-[]
+[
+ {
+  "docstatus": 0,
+  "doctype": "Client Script",
+  "dt": "Purchase Order",
+  "enabled": 0,
+  "modified": "2026-04-30 16:19:54.883289",
+  "module": null,
+  "name": "Print Format PO",
+  "script": "frappe.ui.form.on('Purchase Order', {\r\n    refresh: function(frm) {\r\n        frm.page.set_primary_action(__('Print'), function() {\r\n\r\n            let po = frm.doc.name || \"\";\r\n            let supplier = frm.doc.supplier_name || \"\";\r\n            let project = frm.doc.project || \"\";\r\n            let qtn = frm.doc.quotation_no || \"\";\r\n\r\n            let file_name = `${po}_${supplier}_${project}_${qtn}`.replace(/ /g, \"_\");\r\n\r\n            let print_url = `/api/method/frappe.utils.print_format.download_pdf?doctype=Purchase Order&name=${frm.doc.name}&format=Standard&no_letterhead=0&_lang=en&filename=${file_name}`;\r\n\r\n            window.open(print_url);\r\n        });\r\n    }\r\n});",
+  "view": "Form"
+ }
+]

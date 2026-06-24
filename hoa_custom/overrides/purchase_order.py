@@ -20,19 +20,19 @@ def set_naming_series(doc, method):
 
 	year = now_datetime().year
 
-	# Generate naming series
+	# Generate naming series based on PO Type
 	if doc.po_type == "Normal Material":
 		naming_series = f"{abbr}-MAT-{year}-.####"
 
 	elif doc.po_type == "Subcontracting/Works":
 		naming_series = f"{abbr}-SBC-{year}-.####"
-		doc.is_subcontracted = 0
 
 	elif doc.po_type == "Machinery Rentals":
 		naming_series = f"{abbr}-MAC-{year}-.####"
-		doc.is_subcontracted = 0
 
 	else:
 		return
 
 	doc.naming_series = naming_series
+
+
